@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route, Link, Switch } from "react-router-dom";
+import KycDetail from './Pages/KycDetail';
+import LoginForm from './Pages/LoginForm';
+import Register from './Pages/Register';
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<KycDetail/>} />
+          <Route path="/login" exact element={<LoginForm/>} />
+          <Route path="/register" exact element={<Register/>} />
+          
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
