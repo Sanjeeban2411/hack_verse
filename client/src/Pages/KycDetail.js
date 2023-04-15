@@ -11,6 +11,7 @@ export default function KycDetail() {
         e.preventDefault()
         let formData = new FormData()
         formData.append('name', name)
+        formData.append('pan_number', PAN_number)
         formData.append('govID', govID)
         formData.append('image', Image)
         console.log(formData)
