@@ -5,11 +5,13 @@ export default function KycDetail() {
     const [name, setname] = useState('')
     const [Image, setImage] = useState(null)
     const [PAN_number, setPAN_number] = useState('')
+    const [govID, setgovID] = useState('aadhar_card')
 
     const submitClick = (e) => {
         e.preventDefault()
         let formData = new FormData()
         formData.append('name', name)
+        formData.append('govID', govID)
         formData.append('image', Image)
         console.log(formData)
         console.log([...formData])
