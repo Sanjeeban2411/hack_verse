@@ -9,7 +9,7 @@
 }
 body{
     display: flex;
-    height: 100vh;
+    height: auto;
     justify-content: center;
     align-items: center;
     background: linear-gradient(123deg, #71b8e7,#9b59b6);
@@ -47,7 +47,38 @@ body{
 
 
 /* Login */
+.container form .login_details{
+    display: block;
+}
 
+form .login_details .input_pox{
+    
+    margin-bottom: 15px;
+    margin: 20px 0 12px 0;
+    width: 100%!important;
+}
+.login_details .input_pox .datails{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.login_details .input_pox input{
+    height: 45px;
+    width: 100%!important;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+
+}
+.login_details .input_pox input:focus,
+.login_details .input_pox input:valid{
+border-color: #9b59b6;
+}
 
 .Remember_input_pox{
     display: flex;
@@ -77,6 +108,7 @@ form .user_details .input_pox{
     font-weight: 500;
     margin-bottom: 5px;
 }
+
 
 .user_details .input_pox .datails{
     display: block;

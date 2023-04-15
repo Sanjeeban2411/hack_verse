@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+
 export default function KycDetail() {
-    const [category, setcategory] = useState('')
+    const [name, setname] = useState('')
     const [Image, setImage] = useState(null)
+    const [PAN_number, setPAN_number] = useState('')
 
     const submitClick = (e) => {
         e.preventDefault()
         let formData = new FormData()
-        formData.append('category', category)
+        formData.append('name', name)
         formData.append('image', Image)
         console.log(formData)
         console.log([...formData])
@@ -28,55 +30,60 @@ export default function KycDetail() {
     }
     return (
         <div id='main'>
-            <section id="basic-vertical-layouts">
-                <div class="row match-height">
-                    <div class="col-md-6 col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Add Radio Category</h4>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <form class="form form-vertical" onSubmit={e => { e.preventDefault(); }}>
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group has-icon-left">
-                                                        <label for="first-name-icon">Category Name</label>
-                                                        <div class="position-relative">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Input with icon left"
-                                                                id="first-name-icon" value={category} onChange={(e) => { setcategory(e.target.value) }} />
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-pen"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group has-icon-left">
-                                                        <label for="first-name-icon">Select Image</label>
-                                                        <div class="position-relative">
-                                                            <input type="file" class="basic-filepond" name='image' onChange={(e) => { setImage(e.target.files[0]) }} />
-                                                        </div>
-                                                    </div>
-                                                </div>
+            <div class="container loginContaine">
+                <div class="title">KYC Details</div>
+                <form action="#">
+                    <div class="user_details login_details">
 
-                                                <div class="col-12 d-flex justify-content-end">
-                                                    <button onClick={(e) => { submitClick(e) }}
-                                                        class="btn btn-primary me-1 mb-1">Submit</button>
-                                                    <button type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                        <div class="input_pox">
+                            <span class="datails">PAN Card Number</span>
+                            <input type="text" placeholder="enter your PAN number" value={PAN_number} onChange={(e) => { setPAN_number(e.target.value) }} required />
+                        </div>
+                        <div class="input_pox">
+                            <span class="datails">Name{'(as on PAN card)'}</span>
+                            <input type="text" placeholder="enter your Password" value={name} onChange={(e) => { setname(e.target.value) }} required />
+                        </div>
+                        <div class="Remember_input_pox">
+                            <div class="col-12">
+                                <div class="form-group has-icon-left">
+                                    <label for="first-name-icon">PAN card photo</label>
+                                    <div class="position-relative">
+                                        <input type="file" class="basic-filepond" name='image' onChange={(e) => { setImage(e.target.files[0]) }} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input_pox">
+                            <span class="datails">Select Government ID</span>
+                            <input type="text" placeholder="enter your PAN number" value='Aadhar card' disabled={true} />
+                        </div>
+                        <div class="Remember_input_pox">
+                            <div class="col-12">
+                                <div class="form-group has-icon-left">
+                                    <label for="first-name-icon">Aadhar front photo</label>
+                                    <div class="position-relative">
+                                        <input type="file" class="basic-filepond" name='image' onChange={(e) => { setImage(e.target.files[1]) }} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Remember_input_pox">
+                            <div class="col-12">
+                                <div class="form-group has-icon-left">
+                                    <label for="first-name-icon">Aadhar Back photo</label>
+                                    <div class="position-relative">
+                                        <input type="file" class="basic-filepond" name='image' onChange={(e) => { setImage(e.target.files[2]) }} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                    <div class="button">
+                        <input type="submit" value="Submit" />
+                    </div>
+
+                </form>
+            </div>
         </div>
     )
 }
