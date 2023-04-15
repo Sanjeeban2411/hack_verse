@@ -39,17 +39,23 @@ router.post("/signup", async (req, res)=>{
 })
 
 router.post("/login", async(req,res)=>{
-    const userIdentiy = req.body.userIdentiy
-    const check_user = await User.findOne({user_name:userIdentiy})
-    const check_email = await User.findOne({email:userIdentiy})
-    const check_phone = await User.findOne({phone:userIdentiy})
+    const userIdentity = req.body.userIdentity
+    const check_user = await User.findOne({user_name:userIdentity})
+    const check_email = await User.findOne({email:userIdentity})
+    const check_phone = await User.findOne({phone:userIdentity})
 
     if(!(check_phone || check_email || check_user)){
         return res.status(400).send("You are not registered")
-    }
+    }cd 
 
     const user = check_user?check_user:check_email?check_email:check_phone
-    const check_pass = await bcrypt.compare(req.body.password, user.password)
+    // let check_pass
+    const check_pass = bcrypt.compare(req.body.password, user.password)
+    // .then((res)=>check_pass = !res)
+    // .catch((e)=>{
+    //     console.log(e)
+    // })
+
     if(!check_pass){
         return res.status(400).send("Wrong Credentials")
     }
