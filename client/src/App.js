@@ -18,6 +18,8 @@ function App() {
           <Route path="/register" exact element={<Register />} />
           <Route path="/kyc" exact element={<KycDetail />} />
           <Route path="/upload" exact element={<Upload />} />
+          <Route path="/apply-loan" exact element={<ApplyLoan />} />
+
           {/* <Route path="/upload" exact element={<Upload/>} /> */}
         </Routes>
       </BrowserRouter>
