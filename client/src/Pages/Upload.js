@@ -1,45 +1,116 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import Web3 from "web3";
+import microfinanceABI from "../microfinanceABI.json";
 
 const Upload = () => {
-    const [term, setterm] = useState('')
-    const [PDF, setPDF] = useState(null)
-    const [loan_amount, setLoanAmount] = useState('')
-    const [govID, setgovID] = useState('aadhar_card')
+  const [term, setTerm] = useState("");
+  const [PDF, setPDF] = useState(null);
+  const [loan_amount, setLoanAmount] = useState("");
+  const [monthlyIncome, setMonthlyIncome] = useState("");
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Connect to Ethereum network using web3.js
+    if (window.ethereum) {
+      await window.ethereum.enable();
+      const web3 = new Web3(window.ethereum);
+
+      try {
+        // Create contract instance
+        const contractAddress = "0x665CF73deB0989DdC266007786F01B56B3f128b5";
+        const contract = new web3.eth.Contract(
+          microfinanceABI,
+          contractAddress
+        );
+
+        // Convert input values to required data types for the contract function
+        const loanAmount = web3.utils.toWei(loan_amount.toString(), "ether");
+        const loanTerm = parseInt(term);
+        const monthlyIncomeParsed = parseInt(monthlyIncome);
+
+        // Call the payLoanAmount function in the smart contract
+        const tx = await contract.methods
+          .payLoanAmount(loanTerm, monthlyIncomeParsed)
+          .send({ value: loanAmount });
+
+        // Transaction successful
+        console.log("Loan payment successful", tx);
+      } catch (error) {
+        console.error("Failed to pay loan amount", error);
+      }
+    } else {
+      console.error("Web3 not detected. Please install MetaMask.");
+    }
+  };
   return (
-    <div id='main'>
-            <div class="container loginContaine">
-                <div class="title">Upload Details</div>
-                <form action="#">
-                    <div class="user_details login_details">
-
-                        <div class="input_pox">
-                            <span class="datails">Loan Amount</span>
-                            <input type="number" placeholder="Enter Loan Amount" value={loan_amount} onChange={(e) => { setLoanAmount(e.target.value) }} required />
-                        </div>
-                        <div class="input_pox">
-                            <span class="datails">Term</span>
-                            <input type="text" placeholder="Enter Term Details" value={term} onChange={(e) => { setterm(e.target.value) }} required />
-                        </div>
-                        <div class="Remember_input_pox">
-                            <div class="col-12">
-                                <div class="form-group has-icon-left">
-                                    <label for="first-name-icon">Upload PDF</label>
-                                    <div class="position-relative">
-                                        <input type="file" class="basic-filepond" name='pdf' onChange={(e) => { setPDF(e.target.files[0]) }} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="button">
-                        <input type="submit" value="Submit" />
-                    </div>
-
-                </form>
+    <div id="main">
+      <div className="container loginContainer">
+        <div className="title">Upload Details</div>
+        <form onSubmit={handleSubmit}>
+          <div className="user_details login_details">
+            <div className="input_box">
+              <span className="details">Loan Amount</span>
+              <input
+                type="number"
+                placeholder="Enter Loan Amount"
+                value={loan_amount}
+                onChange={(e) => {
+                  setLoanAmount(e.target.value);
+                }}
+                required
+              />
             </div>
-        </div>
-  )
-}
+            <div className="input_box">
+              <span className="details">Term</span>
+              <input
+                type="text"
+                placeholder="Enter Term Details"
+                value={term}
+                onChange={(e) => {
+                  setTerm(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="input_box">
+              <span className="details">Monthly Income</span>
+              <input
+                type="text"
+                placeholder="Monthly Income"
+                value={monthlyIncome}
+                onChange={(e) => {
+                  setMonthlyIncome(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="Remember_input_box">
+              <div className="col-12">
+                <div className="form-group has-icon-left">
+                  <label htmlFor="pdf">Upload PDF</label>
+                  <div className="position-relative">
+                    <input
+                      type="file"
+                      className="basic-filepond"
+                      name="pdf"
+                      onChange={(e) => {
+                        setPDF(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="button">
+            <input type="submit" value="Submit" onClick={() => {}} />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Upload
+export default Upload;
