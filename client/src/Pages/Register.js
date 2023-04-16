@@ -49,7 +49,7 @@ export default function Register() {
 
         .then(()=>{
             console.log("User Registered")
-            navigate('/')
+            navigate('/dashboard')
         })
         .catch((e)=>{
             console.log("error:",e)
