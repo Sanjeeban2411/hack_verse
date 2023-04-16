@@ -46,7 +46,7 @@ router.post("/login", async(req,res)=>{
 
     if(!(check_phone || check_email || check_user)){
         return res.status(400).send("You are not registered")
-    }cd 
+    }
 
     const user = check_user?check_user:check_email?check_email:check_phone
     // let check_pass
