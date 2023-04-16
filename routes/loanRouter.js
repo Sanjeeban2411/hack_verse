@@ -35,6 +35,7 @@ router.get("/getAllLoans", async(req,res)=>{
 router.get("/getDashboardLoans", async(req,res)=>{
     try {
         const userId = req.body.userId
+        console.log(userId)
         const loans = await Loans.find({reciever_id:userId}).limit(5)
         res.send(loans)
     } catch (error) {
