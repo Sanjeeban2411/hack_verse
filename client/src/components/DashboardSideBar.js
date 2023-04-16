@@ -37,13 +37,19 @@ export default function DashboardSideBar() {
                     <div class="sidebar-menu">
                         <ul class="menu">
                             <li class="sidebar-title">Menu</li>
-
+                            <li class="sidebar-item active " >
+                                <Link to="#" class='sidebar-link' style={{backgroundColor:"#F5841F"}}>
+                                    {/* <i class="bi bi-grid-fill"></i> */}
+                                    <span>Connect Metamask</span>
+                                </Link>
+                            </li>
                             <li class="sidebar-item active ">
-                                <Link to="/" class='sidebar-link'>
+                                <Link to="/dashboard" class='sidebar-link'>
                                     <i class="bi bi-grid-fill"></i>
                                     <span>Dashboard</span>
                                 </Link>
                             </li>
+
                             <li class="sidebar-item  has-sub">
                                 <Link to="#" class='sidebar-link' onClick={() => changeActive(1)}>
                                     <i class="bi bi-stack"></i>
