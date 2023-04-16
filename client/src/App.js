@@ -6,6 +6,7 @@ import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
 import DashboardSideBar from './components/DashboardSideBar';
 import Upload from './Pages/Upload';
+import ApplyLoan from './Pages/ApplyLoan';
 
 
 
@@ -21,6 +22,8 @@ function App() {
           <Route path="/register" exact element={<Register/>} />
           <Route path="/kyc" exact element={<KycDetail/>} />
           <Route path="/upload" exact element={<Upload/>}/>
+          <Route path="/apply-loan" exact element={<ApplyLoan/>}/>
+    
           {/* <Route path="/upload" exact element={<Upload/>} /> */}
 
         </Routes>
