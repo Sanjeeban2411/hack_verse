@@ -21,7 +21,7 @@ export default function LoginForm() {
 
     .then(()=>{
         console.log("Logged In")
-        navigate('/')
+        navigate('/dashboard')
     })
     .catch((e)=>{
         console.log("error:",e)
