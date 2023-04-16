@@ -14,10 +14,10 @@ const Upload = () => {
 
     // Connect to Ethereum network using web3.js
     if (window.ethereum) {
-      await window.ethereum.enable();
-      const web3 = new Web3(window.ethereum);
-
       try {
+        await window.ethereum.enable();
+        const web3 = new Web3(window.ethereum);
+
         // Create contract instance
         const contractAddress = "0x665CF73deB0989DdC266007786F01B56B3f128b5";
         const contract = new web3.eth.Contract(
@@ -30,15 +30,19 @@ const Upload = () => {
         const loanTerm = parseInt(term);
         const monthlyIncomeParsed = parseInt(monthlyIncome);
 
+        // Specify the recipient address (to) for the smart contract function
+        const toAddress = "0xdD2FD4581271e230360230F9337D5c0430Bf44C0";
         // Call the payLoanAmount function in the smart contract
         const tx = await contract.methods
           .payLoanAmount(loanTerm, monthlyIncomeParsed)
-          .send({ value: loanAmount });
+          .send({ value: loanAmount, from: window.ethereum.selectedAddress });
 
         // Transaction successful
         console.log("Loan payment successful", tx);
       } catch (error) {
+        // Transaction failed, show an alert with the error message
         console.error("Failed to pay loan amount", error);
+        alert("Transaction failed. " + error.message);
       }
     } else {
       console.error("Web3 not detected. Please install MetaMask.");
