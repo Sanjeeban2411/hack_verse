@@ -49,6 +49,19 @@ export default function DashboardSideBar() {
                                     <span>Dashboard</span>
                                 </Link>
                             </li>
+                            
+
+                            <li class="sidebar-item  has-sub">
+                                <Link to="#" class='sidebar-link' onClick={() => changeActive(2)}>
+                                    <i class="bi bi-stack"></i>
+                                    <span>KYC</span>
+                                </Link>
+                                <ul className={`submenu ${Active == 2 ? "active" : ""}`}>
+                                    <li class="submenu-item ">
+                                        <Link to='/allshg' >Your KYC</Link>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <li class="sidebar-item  has-sub">
                                 <Link to="#" class='sidebar-link' onClick={() => changeActive(1)}>
@@ -57,7 +70,7 @@ export default function DashboardSideBar() {
                                 </Link>
                                 <ul className={`submenu ${Active == 1 ? "active" : ""}`}>
                                     <li class="submenu-item ">
-                                        <Link to='/all-member' >New Loans </Link>
+                                        <Link to='/apply-loan' >Apply Loans </Link>
                                     </li>
                                     <li class="submenu-item ">
                                         <Link to='/all-member' >All Loans </Link>
@@ -75,18 +88,6 @@ export default function DashboardSideBar() {
                                         <Link to='/all-member' >Rejected Loans </Link>
                                     </li>
                                     
-                                </ul>
-                            </li>
-
-                            <li class="sidebar-item  has-sub">
-                                <Link to="#" class='sidebar-link' onClick={() => changeActive(2)}>
-                                    <i class="bi bi-stack"></i>
-                                    <span>KYC</span>
-                                </Link>
-                                <ul className={`submenu ${Active == 2 ? "active" : ""}`}>
-                                    <li class="submenu-item ">
-                                        <Link to='/allshg' >Your KYC</Link>
-                                    </li>
                                 </ul>
                             </li>
 
