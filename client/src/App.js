@@ -5,6 +5,7 @@ import LoginForm from './Pages/LoginForm';
 import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard';
 import DashboardSideBar from './components/DashboardSideBar';
+import Upload from './Pages/Upload';
 
 
 
@@ -19,6 +20,8 @@ function App() {
           <Route path="/login" exact element={<LoginForm/>} />
           <Route path="/register" exact element={<Register/>} />
           <Route path="/kyc" exact element={<KycDetail/>} />
+          <Route path="/upload" exact element={<Upload/>}/>
+          {/* <Route path="/upload" exact element={<Upload/>} /> */}
 
         </Routes>
       </BrowserRouter>
