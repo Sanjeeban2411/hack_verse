@@ -16,8 +16,8 @@ function App() {
       <BrowserRouter>
       <DashboardSideBar/>
         <Routes>
-          <Route path="/" exact element={<Dashboard/>} />
-          <Route path="/login" exact element={<LoginForm/>} />
+          <Route path="/dashboard" exact element={<Dashboard/>} />
+          <Route path="/" exact element={<LoginForm/>} />
           <Route path="/register" exact element={<Register/>} />
           <Route path="/kyc" exact element={<KycDetail/>} />
           <Route path="/upload" exact element={<Upload/>}/>

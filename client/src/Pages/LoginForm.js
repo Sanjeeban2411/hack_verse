@@ -57,6 +57,7 @@ export default function LoginForm() {
                             <label for="remember">Remember me</label>
                         </div> */}
           </div>
+          <div className="register">New member? <a href="/register">Register</a></div>
           <div className="button">
             <input type="submit" value="Login" onClick={handleForm} />
           </div>
